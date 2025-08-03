@@ -26,6 +26,14 @@ const userSchema = new mongoose.Schema(
             enum: ['Admin', 'Instructor', 'Student'],
             reuired: true
         },
+        phoneNumber: {
+            type: String,
+          },
+        
+          totalEarnings: {
+            type: Number,
+            default: 0,
+          },
         active: {
             type: Boolean,
             default: true,

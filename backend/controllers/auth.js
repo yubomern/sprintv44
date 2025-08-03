@@ -73,11 +73,11 @@ exports.sendOTP = async (req, res) => {
 exports.signup = async (req, res) => {
     try {
         // extract data 
-        const { firstName, lastName, email, password, confirmPassword,
+        const { firstName, lastName, phoneNumber, email, password, confirmPassword,
             accountType, contactNumber, otp } = req.body;
 
         // validation
-        if (!firstName || !lastName || !email || !password || !confirmPassword || !accountType || !otp) {
+        if (!firstName || !lastName || !email ||  !phoneNumber ||   !password || !confirmPassword || !accountType || !otp) {
             return res.status(401).json({
                 success: false,
                 message: 'All fields are required..!'

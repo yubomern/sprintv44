@@ -24,12 +24,13 @@ function SignupForm() {
     email: "",
     password: "",
     confirmPassword: "",
+    phoneNumber: ""
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { firstName, lastName, email, password, confirmPassword } = formData;
+  const { firstName, lastName, email, phoneNumber , password, confirmPassword } = formData;
 
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
@@ -67,6 +68,7 @@ function SignupForm() {
       email: "",
       password: "",
       confirmPassword: "",
+      phoneNumber: ""
     })
     setAccountType(ACCOUNT_TYPE.STUDENT);
   };
@@ -144,6 +146,26 @@ function SignupForm() {
             value={email}
             onChange={handleOnChange}
             placeholder="Enter email address"
+            style={{
+              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+            }}
+            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5 outline-none"
+          />
+        </label>
+
+
+      {/* phoneNumber Address */}
+      <label className="w-full">
+          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            phoneNumber <sup className="text-pink-200">*</sup>
+          </p>
+          <input
+            required
+            type="text"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={handleOnChange}
+            placeholder="Enter phoneNumber"
             style={{
               boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
             }}
