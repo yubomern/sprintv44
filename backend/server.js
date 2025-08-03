@@ -15,7 +15,7 @@ const { cloudinaryConnect } = require('./config/cloudinary');
 // routes
 const userRoutes = require('./routes/user');
 const profileRoutes = require('./routes/profile');
-//const paymentRoutes = require('./routes/payments');
+const paymentRoutes = require('./routes/payments');
 const event = require(`./routes/event`);
 const courseRoutes = require('./routes/course');
 
@@ -61,7 +61,7 @@ cloudinaryConnect();
 // mount route
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profile', profileRoutes);
-//app.use('/api/v1/payment', paymentRoutes);
+app.use('/api/v1/payment', paymentRoutes);
 app.use('/api/v1/course', courseRoutes);
 app.use('/api/v1/event', event);
 

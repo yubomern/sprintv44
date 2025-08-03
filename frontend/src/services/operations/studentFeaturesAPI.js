@@ -6,7 +6,7 @@ import { setPaymentLoading } from "../../slices/courseSlice";
 import { resetCart } from "../../slices/cartSlice";
 
 
-const { COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API } = studentEndpoints;
+const { COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API ,ENROLLEMENT_API} = studentEndpoints;
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -112,6 +112,32 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
 
     try {
         const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
+            Authorization: `Bearer ${token}`,
+        })
+
+        if (!response.data.success) {
+            throw new Error(response.data.message);
+        }
+        toast.success("payment Successful, you are addded to the course");
+        navigate("/dashboard/enrolled-courses");
+        dispatch(resetCart());
+    }
+    catch (error) {
+        console.log("PAYMENT VERIFY ERROR....", error);
+        toast.error("Could not verify Payment");
+    }
+    toast.dismiss(toastId);
+    dispatch(setPaymentLoading(false));
+}
+
+
+// ================ verify payment ================
+async function enrollementFree(bodyData, token, navigate, dispatch) {
+    const toastId = toast.loading("Verifying Payment....");
+    dispatch(setPaymentLoading(true));
+
+    try {
+        const response = await apiConnector("POST", ENROLLEMENT_API, bodyData, {
             Authorization: `Bearer ${token}`,
         })
 

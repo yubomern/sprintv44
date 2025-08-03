@@ -21,6 +21,7 @@ export const studentEndpoints = {
   COURSE_PAYMENT_API: BASE_URL + "/payment/capturePayment",
   COURSE_VERIFY_API: BASE_URL + "/payment/verifyPayment",
   SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
+  ENROLLEMENT_API : BASE_URL +  "/payment/enroll-course"
 }
 
 // COURSE ENDPOINTS
@@ -51,6 +52,13 @@ export const ratingsEndpoints = {
 // CATAGORIES API
 export const categories = {
   CATEGORIES_API: BASE_URL + "/course/showAllCategories",
+}
+
+
+//ENROLL  COURSE FREE
+
+export const enrollementCourse   = {
+   ENROLLEMENT_FREE_API  : BASE_URL +  "/payment/enroll-course"
 }
 
 // CATALOG PAGE DATA
