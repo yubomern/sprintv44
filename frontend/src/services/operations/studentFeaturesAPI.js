@@ -132,12 +132,14 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
 
 
 // ================ verify payment ================
-export async function enrollementFree(bodyData, token, navigate, dispatch) {
+export async function enrollementFree(bodyData, token, userDetails , navigate, dispatch) {
     const toastId = toast.loading("Verifying Payment....");
     dispatch(setPaymentLoading(true));
 
+    console.log(userDetails);
+
     try {
-        const response = await apiConnector("POST", ENROLLEMENT_API, bodyData, {
+        const response = await apiConnector("POST", ENROLLEMENT_API, {"courseId" : bodyData}, {
             Authorization: `Bearer ${token}`,
         })
 

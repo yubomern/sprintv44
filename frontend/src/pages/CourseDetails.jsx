@@ -34,8 +34,9 @@ function CourseDetails() {
   const { paymentLoading } = useSelector((state) => state.course)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-
+    
+  
+  
   // Getting courseId from url parameter
   const { courseId } = useParams()
   // console.log(`course id: ${courseId}`)
@@ -140,7 +141,8 @@ function CourseDetails() {
   const handleBuyCourse = () => {
     if (token) {
       const coursesId = [courseId]
-      enrollementFree(token, coursesId, user, navigate, dispatch)
+      console.log("toknnne ++++++++++++++++++++++++++++++ "  + token);
+      enrollementFree(coursesId,token, user, navigate, dispatch)
       return
     }
     setConfirmationModal({
