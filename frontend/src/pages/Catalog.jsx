@@ -43,6 +43,7 @@ function Catalog() {
             ; (async () => {
                 setLoading(true)
                 try {
+                     console.log("--------------------------------------"  + categoryId);
                     const res = await getCatalogPageData(categoryId)
                     setCatalogPageData(res)
                 } catch (error) {
@@ -53,8 +54,8 @@ function Catalog() {
         }
     }, [categoryId])
 
-    // console.log('======================================= ', catalogPageData)
-    // console.log('categoryId ==================================== ', categoryId)
+     console.log('======================================= ', catalogPageData)
+     console.log('categoryId ==================================== ', categoryId)
 
     if (loading) {
         return (

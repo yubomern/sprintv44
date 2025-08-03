@@ -37,6 +37,7 @@ export const getAllCourses = async () => {
       throw new Error("Could Not Fetch Course Categories")
     }
     result = response?.data?.data
+    console.table(result);
   } catch (error) {
     console.log("GET_ALL_COURSE_API API ERROR............", error)
     toast.error(error.message)
@@ -81,6 +82,8 @@ export const fetchCourseCategories = async () => {
       throw new Error("Could Not Fetch Course Categories")
     }
     result = response?.data?.data
+    console.table(result);
+
   } catch (error) {
     console.log("COURSE_CATEGORY_API API ERROR............", error)
     toast.error(error.message)

@@ -69,7 +69,7 @@ exports.showAllCategories = async (req, res) => {
 exports.getCategoryPageDetails = async (req, res) => {
     try {
         const { categoryId } = req.body
-        // console.log("PRINTING CATEGORY ID: ", categoryId);
+         console.log("PRINTING CATEGORY ID: ", categoryId);
 
         // Get courses for the specified category
         const selectedCategory = await Category.findById(categoryId)
@@ -80,12 +80,15 @@ exports.getCategoryPageDetails = async (req, res) => {
             })
             .exec()
 
-        // console.log('selectedCategory = ', selectedCategory)
+         console.log('selectedCategory = ', selectedCategory)
         // Handle the case when the category is not found
         if (!selectedCategory) {
             // console.log("Category not found.")
             return res.status(404).json({ success: false, message: "Category not found" })
         }
+
+
+        console.table(selectedCategory);
 
 
 
@@ -103,18 +106,10 @@ exports.getCategoryPageDetails = async (req, res) => {
         const categoriesExceptSelected = await Category.find({
             _id: { $ne: categoryId },
         })
-
-        let differentCategory = await Category.findOne(
-            categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
-                ._id
-        )
-            .populate({
-                path: "courses",
-                match: { status: "Published" },
-            })
-            .exec()
-
-        //console.log("Different COURSE", differentCategory)
+        console.table(categoriesExceptSelected);
+        console.log("length     "   , categoriesExceptSelected.length);
+        
+        
         // Get top-selling courses across all categories
         const allCategories = await Category.find()
             .populate({
@@ -131,12 +126,38 @@ exports.getCategoryPageDetails = async (req, res) => {
             .sort((a, b) => b.sold - a.sold)
             .slice(0, 10)
 
-        // console.log("mostSellingCourses COURSE", mostSellingCourses)
+        console.log("mostSellingCourses COURSE", mostSellingCourses)
+        
+        if(categoriesExceptSelected.length >1){
+            let differentCategory = await Category.findOne(
+                categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)+1]
+                    ._id
+            )
+                .populate({
+                    path: "courses",
+                    match: { status: "Published" },
+                })
+                .exec()
+            console.log("_________________________id");
+            console.log("Different COURSE", differentCategory);
+
+            res.status(200).json({
+                success: true,
+                data: {
+                    selectedCategory,
+                    differentCategory,
+                    mostSellingCourses,
+                },
+            })
+
+        }
+
+        
         res.status(200).json({
             success: true,
             data: {
                 selectedCategory,
-                differentCategory,
+                //differentCategory,
                 mostSellingCourses,
             },
         })

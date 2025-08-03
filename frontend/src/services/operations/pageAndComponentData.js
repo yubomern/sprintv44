@@ -17,6 +17,7 @@ export const getCatalogPageData = async (categoryId) => {
 
     console.log("CATALOG PAGE DATA API RESPONSE............", response)
     result = response?.data?.data;
+    console.table(result);
 
   }
   catch (error) {
