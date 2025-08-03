@@ -13,7 +13,7 @@ import CourseAccordionBar from "../components/core/Course/CourseAccordionBar"
 import CourseDetailsCard from "../components/core/Course/CourseDetailsCard"
 import { formatDate } from "../services/formatDate"
 import { fetchCourseDetails } from "../services/operations/courseDetailsAPI"
-import { buyCourse,enrollementFree } from "../services/operations/studentFeaturesAPI"
+import { buyCourse ,enrollementFree} from "../services/operations/studentFeaturesAPI"
 
 import GetAvgRating from "../utils/avgRating"
 import { ACCOUNT_TYPE } from './../utils/constants';

@@ -132,7 +132,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
 
 
 // ================ verify payment ================
-async function enrollementFree(bodyData, token, navigate, dispatch) {
+export async function enrollementFree(bodyData, token, navigate, dispatch) {
     const toastId = toast.loading("Verifying Payment....");
     dispatch(setPaymentLoading(true));
 

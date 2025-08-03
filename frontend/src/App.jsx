@@ -38,8 +38,7 @@ import VideoDetails from './components/core/ViewCourse/VideoDetails';
 import { ACCOUNT_TYPE } from './utils/constants';
 
 import { HiArrowNarrowUp } from "react-icons/hi"
-import MyCalendar from "./components/core/Calendars/Calendar";
-import AppCalendar from "./AppCalendar";
+
 
 
 function App() {
@@ -148,7 +147,7 @@ function App() {
         }
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
-          <Route path="dashboard/Meeting" element={<AppCalendar />} />
+          
           <Route path="dashboard/Settings" element={<Settings />} />
 
           {/* Route only for Students */}
