@@ -36,12 +36,45 @@ function sendSMS(from, to, body) {
 
 
 
+exports.sendOptNumber =  async (req, res) =>{
+
+    try {
+        const  {phoneNumber} = req.body ;
+
+        
+
+        const userPhone  = await User.findOne({phoneNumber});
+        sendSMS(
+            process.env.TWILIO_PHONE_NUMBER,
+            phoneNumber,
+            "test"
+          );
+          res.status(200).json({
+            success: true,
+            otp,
+            message: 'Otp sent successfully'
+        });
+
+
+    }catch(error) {
+        console.log('Error while generating Otp - ', error);
+        res.status(200).json({
+            success: false,
+            message: 'Error while generating Otp',
+            error: error.mesage
+        });
+
+    }
+}
+
 // ================ SEND-OTP For Email Verification ================
 exports.sendOTP = async (req, res) => {
     try {
 
         // fetch email from re.body 
         const { email,phoneNumber } = req.body;
+
+        console.log(phoneNumber);
 
         // check user already exist ?
         const checkUserPresent = await User.findOne({ email,phoneNumber });
@@ -82,9 +115,11 @@ exports.sendOTP = async (req, res) => {
 
          const checkUserPresentphone = await User.findOne({ phoneNumber });
          console.log(checkUserPresentphone);
+         const tonumber  = "+216" + phoneNumber;
+         console.log(tonumber);
          sendSMS(
              process.env.TWILIO_PHONE_NUMBER,
-             "28646924",
+             tonumber,
              otp
            );
         
@@ -147,10 +182,11 @@ exports.signup = async (req, res) => {
 
          const checkUserPresentphone = await User.findOne({ phoneNumber });
          console.log(checkUserPresentphone);
+         
          sendSMS(
              process.env.TWILIO_PHONE_NUMBER,
-             checkUserPresentphone.phoneNumber,
-             otp
+             phoneNumber,
+             recentOtp.otp
            );
 
         // .sort({ createdAt: -1 }): 
