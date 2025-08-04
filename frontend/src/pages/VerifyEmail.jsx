@@ -25,9 +25,9 @@ function VerifyEmail() {
 
   const handleVerifyAndSignup = (e) => {
     e.preventDefault();
-    const { accountType, firstName, lastName, email, phoneNumber  , password, confirmPassword, } = signupData;
+    const { accountType, firstName, lastName, email  , password, confirmPassword, } = signupData;
 
-    dispatch(signUp(accountType, firstName, lastName, phoneNumber , email, password, confirmPassword, otp, navigate));
+    dispatch(signUp(accountType, firstName, lastName , email, password, confirmPassword, otp, navigate));
   };
 
   return (

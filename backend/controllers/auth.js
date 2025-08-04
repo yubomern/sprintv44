@@ -117,11 +117,11 @@ exports.sendOTP = async (req, res) => {
          console.log(checkUserPresentphone);
          const tonumber  = "+216" + phoneNumber;
          console.log(tonumber);
-         sendSMS(
+         /*sendSMS(
              process.env.TWILIO_PHONE_NUMBER,
              tonumber,
              otp
-           );
+           );*/
         
         // return response successfully
         res.status(200).json({
@@ -182,13 +182,13 @@ exports.signup = async (req, res) => {
 
          const checkUserPresentphone = await User.findOne({ phoneNumber });
          console.log(checkUserPresentphone);
-         
+         /*
          sendSMS(
              process.env.TWILIO_PHONE_NUMBER,
              phoneNumber,
              recentOtp.otp
            );
-
+         */
         // .sort({ createdAt: -1 }): 
         // It's used to sort the results based on the createdAt field in descending order (-1 means descending). 
         // This way, the most recently created OTP will be returned first.
@@ -208,7 +208,7 @@ exports.signup = async (req, res) => {
                 success: false,
                 message: 'Invalid Otp'
             })
-        }
+        } 
 
         // hash - secure passoword
         let hashedPassword = await bcrypt.hash(password, 10);
