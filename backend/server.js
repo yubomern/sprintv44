@@ -102,3 +102,8 @@ app.get('/default', (req, res) => {
     <p>Everything is OK</p>
     </div>`);
 })
+
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
