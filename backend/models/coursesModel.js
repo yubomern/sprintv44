@@ -18,6 +18,11 @@ const courseSchema = new mongoose.Schema({
     type:  String , 
     require:false 
   },
+  pdf:{
+    type:  String , 
+    require:false 
+  },
+  
   
   
   img: {
